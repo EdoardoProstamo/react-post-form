@@ -12,7 +12,7 @@ function App() {
 
   function sendPost(event) {
 
-    const { type, name, value } = event.target;
+    const { type, name, value, checked } = event.target;
 
     setFormAction((prev) => ({
 
@@ -21,10 +21,26 @@ function App() {
     }))
   }
 
+
+  function sendSubmit(event) {
+
+    event.preventdefault();
+
+    axios
+      .post('https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts', formAction)
+      .then(res => {
+
+        setFormAction({ author: "", title: "", body: "", public: false })
+        console.log("Post inviato", res.data)
+
+      })
+  }
+
+
   return (
     <div>
       <h1>Campo testo</h1>
-      <form>
+      <form onSubmit={sendSubmit}>
 
         <div>
           <label>Autore</label>
@@ -43,7 +59,7 @@ function App() {
 
         <div>
           <label>Pubblica</label>
-          <input type="checkbox" name='public' checked={formAction.public} onChange={sendPost} onClick={true} />
+          <input type="checkbox" name='public' checked={formAction.public} onChange={sendPost} />
         </div>
 
         <button type='submit'>Invia</button>
