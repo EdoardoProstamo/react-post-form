@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios';
 
 function App() {
 
@@ -6,9 +7,19 @@ function App() {
     author: "",
     title: "",
     body: "",
-    public: true
+    public: false
   });
 
+  function sendPost(event) {
+
+    const { type, name, value } = event.target;
+
+    setFormAction((prev) => ({
+
+      ...prev, [name]: type === "checkbox" ? checked : value,
+
+    }))
+  }
 
   return (
     <div>
@@ -17,22 +28,22 @@ function App() {
 
         <div>
           <label>Autore</label>
-          <input type="text" name='author' value={formAction.author} />
+          <input type="text" name='author' value={formAction.author} onChange={sendPost} />
         </div>
 
         <div>
           <label>Titolo</label>
-          <input type="text" name='title' value={formAction.title} />
+          <input type="text" name='title' value={formAction.title} onChange={sendPost} />
         </div>
 
         <div>
           <label>Contenuto</label>
-          <input type="text" name='body' value={formAction.body} />
+          <input type="text" name='body' value={formAction.body} onChange={sendPost} />
         </div>
 
         <div>
           <label>Pubblica</label>
-          <input type="radio" name='public' value={formAction.public} />
+          <input type="checkbox" name='public' checked={formAction.public} onChange={sendPost} onClick={true} />
         </div>
 
         <button type='submit'>Invia</button>
