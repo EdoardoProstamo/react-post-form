@@ -16,26 +16,26 @@ function App() {
       <form>
 
         <div>
-          <label>author</label>
-          <input type="text" />
+          <label>Autore</label>
+          <input type="text" name='author' value={formAction.author} />
         </div>
 
         <div>
-          <label>title</label>
-          <input type="text" />
+          <label>Titolo</label>
+          <input type="text" name='title' value={formAction.title} />
         </div>
 
         <div>
-          <label>body</label>
-          <input type="text" />
+          <label>Contenuto</label>
+          <input type="text" name='body' value={formAction.body} />
         </div>
 
         <div>
-          <label>public</label>
-          <input type="radio" />
+          <label>Pubblica</label>
+          <input type="radio" name='public' value={formAction.public} />
         </div>
 
-        <button>Invia</button>
+        <button type='submit'>Invia</button>
 
       </form>
     </div>
