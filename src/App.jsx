@@ -2,6 +2,14 @@ import { useState } from 'react'
 
 function App() {
 
+  const [formAction, setFormAction] = useState({
+    author: "",
+    title: "",
+    body: "",
+    public: true
+  });
+
+
   return (
     <div>
       <h1>Campo testo</h1>
@@ -24,7 +32,7 @@ function App() {
 
         <div>
           <label>public</label>
-          <input type="boolean" />
+          <input type="radio" />
         </div>
 
         <button>Invia</button>
